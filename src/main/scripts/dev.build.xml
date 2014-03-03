@@ -295,10 +295,24 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02
 
     <copy todir="${workDir}/sonar-${runtimeVersion}/conf/" overwrite="true" verbose="true" flatten="true">
       <resources>
-        <javaresource name="server/sonar.properties"/>
         <javaresource name="server/wrapper.conf"/>
       </resources>
     </copy>
+    <available property="custom.properties" file="${customProperties}"/>
+    <if>
+      <isset property="custom.properties"/>
+      <then>
+        <copy file="${customProperties}" todir="${workDir}/sonar-${runtimeVersion}/conf/" overwrite="true" verbose="true" flatten="true" />
+      </then>
+      <else>
+        <copy todir="${workDir}/sonar-${runtimeVersion}/conf/" overwrite="true" verbose="true" flatten="true">
+          <resources>
+            <javaresource name="server/sonar.properties"/>
+          </resources>
+        </copy>
+      </else>
+    </if>
+
 
     <available property="has.extensions" file="${extensionsDir}"/>
     <antcall target="copy-extensions"/>

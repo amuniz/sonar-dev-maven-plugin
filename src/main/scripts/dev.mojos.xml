@@ -188,6 +188,14 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02
           <type>java.io.File</type>
           <defaultValue>${maven.home}</defaultValue>
         </parameter>
+        <parameter>
+          <name>customProperties</name>
+          <description>Path to custom sonar properties file.</description>
+          <property>customProperties</property>
+          <expression>${sonar.customProperties}</expression>
+          <required>false</required>
+          <type>java.lang.String</type>
+        </parameter>
 
       </parameters>
     </mojo>
